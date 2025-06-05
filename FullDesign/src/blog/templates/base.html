@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo_fullDesign.jpg' %}">
+    {% block link %}
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'images/logo_fullDesign_.jpg' %}" alt="B.store" style="height:48px;">
+        </div>
+        <nav>
+            <a href="{% url "home" %}">Accueil</a>
+            <a href="{% url "ensembles" %}">Ensembles</a>
+            <a href="#">Nouveautés</a>
+            <a href="{% url "contact" %}">Contact</a>
+        </nav>
+        <form class="search-bar" method="get" action="{% url 'search' %}">
+            <input type="text" name="q" placeholder="Rechercher...">
+            <button type="submit">Rechercher</button>
+        </form>
+        <div class="burger" id="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+<!-- Le contenu principal de la page sera inséré ici -->
+    {% block home %}
+    {% endblock home %}
+
+
+    <section>
+        {% block content %}
+        <!-- Le contenu spécifique de chaque page sera inséré ici -->
+        {% endblock %}
+    </section>
+    <footer>
+        <p>&copy; 2025 FullDesign. Tous droits réservés.</p>
+    </footer>
+    <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block title %}<title> Accueil - FullDesign </title>{% endblock %}
+
+{% block link %}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="home-container">
+        <h1 class="home-title">Bienvenue chez FullDesign</h1>
+        <p class="home-description">
+            Découvrez nos ensembles de vêtements uniques et tendance.<br>
+            Explorez les nouveautés et trouvez votre style.
+        </p>
+        <a href="" class="home-button">Voir les ensembles</a>
+    </div>
+<section class="home-section">
+    <h2 class="section-title">Nos Ensembles</h2>
+    <div class="ensemble-list">
+{% for ensemble in products %}
+    <div class="ensemble-item">
+        <img src="{{ ensemble.image_1.url }}" alt="{{ ensemble.name }}">
+        <h3>{{ ensemble.name }}</h3>
+        <p>{{ ensemble.description }}</p>
+        <p class="ensemble-price">{{ ensemble.price }} $</p>
+        <a href="" class="ensemble-link">Voir l'ensemble</a>
+    </div>
+{% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!-- filepath: d:\Moi\Sites\FullDesign\src\blog\templates\home\search_results.html -->
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}<title>Résultats de recherche - FullDesign</title>{% endblock %}
+{% block link %}
+    <link href="{% static 'css/search_results.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h2>Résultats pour "{{ query }}"</h2>
+    <div class="ensemble-list">
+        {% for product in results %}
+            <div class="ensemble-item">
+                <img src="{{ product.image_1.url }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p class="ensemble-price">{{ product.price }} €</p>
+                <a href="{% url "ensembles" %}" class="ensemble-link">Voir l'ensemble</a>
+            </div>
+        {% empty %}
+            <p>Aucun résultat trouvé.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+

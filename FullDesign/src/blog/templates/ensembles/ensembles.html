@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Nos Ensembles - FullDesign</title>{% endblock %}
+
+{% block link %}
+    <link href="{% static 'css/ensembles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="ensembles-container">
+    <h1 class="ensembles-title">Tous nos Ensembles</h1>
+    <div class="categories-tabs">
+        <a href="{% url 'ensembles' %}?categorie=all" class="tab{% if selected_category == 'all' %} active{% endif %}">Tous mes ensembles</a>
+        {% for cat in categories %}
+            <a href="{% url 'ensembles' %}?categorie={{ cat.slug }}" class="tab{% if selected_category == cat.slug %} active{% endif %}">{{ cat.name }}</a>
+        {% endfor %}
+    </div>
+    <div class="ensemble-list">
+        {% for ensemble in products %}
+            <div class="ensemble-item">
+                <img src="{{ ensemble.image_1.url }}" alt="{{ ensemble.name }}">
+                <h3>{{ ensemble.name }}</h3>
+                <p>{{ ensemble.description }}</p>
+                <p class="ensemble-price">{{ ensemble.price }} €</p>
+                <a href="" class="ensemble-link">Voir plus</a>
+            </div>
+        {% empty %}
+            <p class="no-result">Aucun ensemble trouvé.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
