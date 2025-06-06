@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: fulldesign
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn core.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: core.settings
+      - key: DJANGO_SECRET_KEY
+        value: remplace_moi_par_une_clé_sécurisée
+      - key: DJANGO_ALLOWED_HOSTS
+        value: fulldesign.onrender.com
+      - key: DJANGO_DEBUG
+        value: False
